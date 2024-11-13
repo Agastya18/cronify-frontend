@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const LogoTicker = () => {
   return (
-    <div className="my-20 max-w-[1000px] mx-auto px-4">
+    <div className="my-12 max-w-[1000px] mx-auto px-4">
       <div className=" bg-white">
         <div className="px-5 md:px-10 md:flex items-center justify-center">
           <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]">
