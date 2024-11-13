@@ -38,9 +38,9 @@ const Navbar = () => {
   return (
     <header className="w-screen py-4 border-b md:border-none fixed top-0 left-0  right-0 bg-[#DAF872] md:bg-white/0 z-40 ">
    
-    <div className="container pl- px-3    ">
+    <div className="container  px-3    ">
     
-      <div className="    flex justify-between items-center md:border md:p-2.5  rounded-full max-w-2xl lg:max-w-3xl mx-auto  md:ml-80  md:bg-[#DAF872] md:backdrop:blur-xl ">
+      <div className="    flex justify-between items-center md:border md:p-2.5  rounded-full max-w-xl lg:max-w-xl mx-auto   lg:ml-[430px] md:bg-[#DAF872] md:backdrop:blur-xl ">
           
        
           <div className="border   h-10 w-10 rounded-lg inline-flex justify-center items-center">
