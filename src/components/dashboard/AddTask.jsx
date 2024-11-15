@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import * as z from "zod";
 import { useQueryClient } from "@tanstack/react-query";
+import formSchema from "@/types/zodType";
 import {
     Form,
     FormControl,
@@ -25,26 +26,7 @@ import {
 import { Globe, Bell, MessageSquare, AlertCircle, Loader2 } from "lucide-react";
 
 
-const formSchema = z.object({
-  url: z
-    .string()
-    .url({ message: "Please enter a valid URL" })
-    .refine((val) => val.startsWith("https://"), {
-      message: "URL must start with https://",
-    }),
-  notify: z.boolean().optional(),
-  discordUrl: z
-    .string()
-    .transform((value) => (value === "" ? undefined : value))
-    .optional()
-    .refine(
-      (val) => !val || val.startsWith("https://discord.com/api/webhooks/"),
-      {
-        message:
-          "Discord URL must start with https://discord.com/api/webhooks/",
-      }
-    ),
-});
+
 
 export default function AddTaskForm() {
   const [showDiscordInput, setShowDiscordInput] = React.useState(false);
