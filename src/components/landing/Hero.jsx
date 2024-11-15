@@ -67,7 +67,7 @@ const Hero = () => {
           </h1>
 
           <p className=" text-2xl tracking-tighter text-black/70 text-center mt-5">
-          Automate Your Uptime, Effortlessly! <br className="hidden md:block" />  Because even server need agood poke now and then. We will keep your cold start hot <br className="hidden md:block" /> and your downtime down.
+          Automate Your Uptime, Effortlessly! <br className="hidden md:block" />  Because even server need a good poke now and then. We will keep your cold start hot <br className="hidden md:block" /> and your downtime down.
           </p>
         </div>
         <div className="flex   items-center justify-center mt-5 text-white">
@@ -108,7 +108,7 @@ const Hero = () => {
             {session?.user ? (
               <Link href={"/dashboard"}>Go to Dashboard</Link>
             ) : (
-              <Link href={"/signup"}>Get Started</Link>
+              <Link href={"/dashboard"}>Get Started</Link>
             )}
           </span>
           <span className="absolute inset-0 overflow-hidden rounded-md">

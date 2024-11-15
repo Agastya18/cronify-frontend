@@ -1,29 +1,38 @@
 import { ArrowUpCircle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
-
-
+import { Skeleton } from "@/components/ui/skeleton";
+import { TaskCard } from "./Task";
 export const TaskContainer = () => {
-    const { data, isLoading, error } = useQuery({
-      queryKey: ["pingTask"],
-      queryFn: async () => getPings(),
-      refetchInterval: 1000 * 60 * 5,
-    });
+    // const { data, isLoading, error } = useQuery({
+    //   queryKey: ["pingTask"],
+    //   queryFn: async () => getPings(),
+    //   refetchInterval: 1000 * 60 * 5,
+    // });
+
   
-    if (isLoading) {
-      return (
-        <div className="space-y-4 w-full md:w-[80%]">
-          {Array(5)
-            .fill(0)
-            .map((_, index) => (
-              <Skeleton
-                className="h-12  bg-muted-foreground rounded-xl"
-                key={index}
-              />
-            ))}
-        </div>
-      );
+    const data = {
+      additional: {
+        pings: [
+
+        ]
+      }
     }
+  
+    // if (isLoading) {
+    //   return (
+    //     <div className="space-y-4 w-full md:w-[80%]">
+    //       {Array(5)
+    //         .fill(0)
+    //         .map((_, index) => (
+    //           <Skeleton
+    //             className="h-12  bg-muted-foreground rounded-xl"
+    //             key={index}
+    //           />
+    //         ))}
+    //     </div>
+    //   );
+    // }
   
     if (data?.additional.pings.length === 0) {
       return (
@@ -40,14 +49,15 @@ export const TaskContainer = () => {
       );
     }
   
-    if (error) {
-      return <p>Failed to fetch tasks</p>;
-    }
-    return (
-      <div className="w-full md:w-[80%] flex justify-center items-start flex-col gap-3">
-        {data?.additional.pings.map((task) => {
-          return <TaskCard key={task.ID} Task={task} />;
-        })}
-      </div>
-    );
+    // if (error) {
+    //   return <p>Failed to fetch tasks</p>;
+    // }
+    // return (
+    //   <div className="w-full md:w-[80%] flex justify-center items-start flex-col gap-3">
+    //     {/* {data?.additional.pings.map((task) => {
+    //       return <TaskCard key={task.ID} Task={task} />;
+    //     })} */}
+    //     this is task url: http://localhost
+    //   </div>
+    // );
   };
