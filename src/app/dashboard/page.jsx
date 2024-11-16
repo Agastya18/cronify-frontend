@@ -8,7 +8,7 @@ import SheetWrapper from "@/components/dashboard/sheetWrapper";
 import { SectionWrapper } from "@/components/dashboard/Section-wrapper";
 import { TaskContainer } from "@/components/dashboard/TaskContainer";
 import AddTaskForm from "@/components/dashboard/AddTask";
-
+import { useRouter } from 'next/router'
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import formSchema from "@/types/zodType";
+
 import { useQueryClient } from "@tanstack/react-query";
 const page = () => {
 
@@ -47,6 +48,7 @@ const page = () => {
 }
 
 function DashboardHeader() {
+  
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
@@ -100,25 +102,25 @@ function DashboardHeader() {
             Dashboard
           </motion.h1>
           <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
-            <Button
+            {/* <Button
               variant="outline"
               size="icon"
               className="md:hidden flex justify-center items-center"
-              onClick={() => setIsOpen(true)}
+              onClick={() => router.push("/add-task")}
             >
               <Plus className=" h-4 w-4" />
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               variant="outline"
               size="icon"
-              className="md:hidden bg-red-500"
+              className=" bg-red-500"
               onClick={() => signOut()}
             >
               <LogOut className=" h-4 w-4" />
-            </Button>
+            </Button> */}
 
             <motion.div
-              className="hidden md:flex md:gap-3"
+              className=" md:flex md:gap-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
