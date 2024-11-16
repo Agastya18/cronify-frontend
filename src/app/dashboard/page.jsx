@@ -7,6 +7,19 @@ import SheetWrapper from "@/components/dashboard/sheetWrapper";
 import { SectionWrapper } from "@/components/dashboard/Section-wrapper";
 import { TaskContainer } from "@/components/dashboard/TaskContainer";
 import AddTaskForm from "@/components/dashboard/AddTask";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
 const page = () => {
   return (
     <SectionWrapper>
@@ -86,14 +99,36 @@ function DashboardHeader() {
                 <LogOut className="h-4 w-4" />
                 <span className="hidden lg:inline">Log Out</span>
               </Button>
-              <Button
-                variant="default"
-                onClick={() => setIsOpen(true)}
-                className="flex items-center gap-2 rounded-lg"
-              >
-                <Plus className="h-4 w-4" />
-                <span className="hidden lg:inline">Add task</span>
-              </Button>
+              <Dialog>
+      <DialogTrigger asChild>
+        <Button >Add Task</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Add Url</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Name
+            </Label>
+            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Username
+            </Label>
+            <Input id="username" value="@peduarte" className="col-span-3" />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit">Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
             </motion.div>
           </div>
         </div>
