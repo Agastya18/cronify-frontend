@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const formSchema = z.object({
+  title: z.string(),
  url: z
     .string()
     .url({ message: "Please enter a valid URL" })

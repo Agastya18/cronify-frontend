@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LogOut, Menu, Plus } from "lucide-react";
 import SheetWrapper from "@/components/dashboard/sheetWrapper";
@@ -17,10 +18,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-
+import formSchema from "@/types/zodType";
+import { useQueryClient } from "@tanstack/react-query";
 const page = () => {
+
   return (
     <SectionWrapper>
     <div className="flex-grow flex flex-col min-h-screen   w-full">
@@ -43,6 +47,7 @@ const page = () => {
 }
 
 function DashboardHeader() {
+  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
   const handleLogout = () => {
@@ -50,6 +55,33 @@ function DashboardHeader() {
     signOut();
     setIsLoggingOut(false);
   };
+  const [title, setTitle] = useState('');
+  const [url, setUrl] = useState('');
+    
+    
+    
+  
+
+ 
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      
+      try {
+        setIsLoading(true);
+        const result=  formSchema.safeParse({title,url});
+
+   if(!result.success){
+         console.log(result.error);
+       }
+
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error);
+        
+      }
+    }
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -105,27 +137,27 @@ function DashboardHeader() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Url</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+          <DialogTitle>Add CronJob</DialogTitle>
+          <DialogDescription className=" text-red-400">
+          By default, we will send an email notification if this server returns any status code other than 200.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
+            <Label htmlFor="name" className="text-right font-semibold ">
+            Title*
             </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            <Input  value={title}  onChange={(e)=>setTitle(e.target.value)} id="name" placeholder="name" className="col-span-3" />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
+            <Label htmlFor="username" className="text-right font-semibold">
+            URL*
             </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
+            <Input id="username" value={url} onChange={(e)=>setUrl(e.target.value)}  placeholder="https://example.com" className="col-span-3"  />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button disabled={isLoading} onClick={handleSubmit} >Save changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
